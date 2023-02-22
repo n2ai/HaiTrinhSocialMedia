@@ -10,7 +10,7 @@ import { fileURLToPath } from "url"
 import multer from "multer"
 import {register} from "./controllers/auth.js"
 import authRoutes from "./routes/auth.js"
-
+import userRoutes from "./routes/users.js"
 //Configuration
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -41,9 +41,10 @@ const upload = multer({storage})
 app.post("/auth/register", upload.single("picture"), register)
 
 
+
 //Routes
 app.use("/auth", authRoutes)
-
+app.use("/users", userRoutes )
 //Set up connection with MongoDB
 mongoose.set('strictQuery', true)
 const PORT = process.env.PORT || 6001
